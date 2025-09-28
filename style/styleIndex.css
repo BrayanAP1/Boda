@@ -552,7 +552,7 @@
     }
 
     .fondo-intineario {
-      background-image: url("img/fondo.png");
+      background-image: url("../img/fondo.png");
       padding: 40px 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       width: 100%;
