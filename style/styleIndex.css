@@ -1,0 +1,636 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: linear-gradient(135deg, #faf6f2 0%, #e9e1d9 100%);
+      color: #5a4c40;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 20px;
+      max-width: 600px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Fondo animado */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 20%);
+      z-index: -1;
+      animation: floatBackground 20s ease-in-out infinite;
+    }
+
+    @keyframes floatBackground {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(-5px, -5px);
+      }
+    }
+
+    /* Logo */
+    .logo img {
+      max-width: 100px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .iconos img{
+      max-width: 200px;
+      animation: pulseElegant 4s ease-in-out infinite;
+    }
+
+    .iconos1 img{
+      max-width: 160px;
+      animation: pulseElegant 4s ease-in-out infinite;
+    }
+
+    .sobres img{
+      max-width: 150px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .regalos img{
+      max-width: 120px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Animaciones personalizadas */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseElegant {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+      }
+      20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+      }
+    }
+
+    @keyframes wiggle {
+      0%, 7% {
+        transform: rotateZ(0);
+      }
+      15% {
+        transform: rotateZ(-5deg);
+      }
+      20% {
+        transform: rotateZ(3deg);
+      }
+      25% {
+        transform: rotateZ(-3deg);
+      }
+      30% {
+        transform: rotateZ(2deg);
+      }
+      35% {
+        transform: rotateZ(-1deg);
+      }
+      40%, 100% {
+        transform: rotateZ(0);
+      }
+    }
+
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Frase */
+    .frase {
+      font-style: italic;
+      font-size: 1.2rem;
+      margin: 15px 0 5px 0;
+      color: #444;
+      text-align: center;
+      animation: fadeInDown 1s ease-out 0.3s both;
+    }
+
+    .autor {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: fadeInDown 1s ease-out 0.5s both;
+    }
+
+    /* Imagen con bordes rasgados */
+    .contenedor-imagen {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out 0.7s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contenedor-imagen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .contenedor-imagen:hover img {
+      transform: scale(1.02);
+    }
+
+    /* Animación especial para la imagen pareja3 */
+    .contenedor-imagen:first-of-type img {
+      animation: floatImage 8s ease-in-out infinite;
+    }
+
+    @keyframes floatImage {
+      0%, 100% {
+        transform: translateY(0) rotate(0.5deg);
+      }
+      33% {
+        transform: translateY(-5px) rotate(-0.5deg);
+      }
+      66% {
+        transform: translateY(3px) rotate(0.3deg);
+      }
+    }
+
+    /* Caja de invitación elegante */
+    .invitation-container {
+      background-color: #fffcf9;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 650px;
+      border: 1px solid #e9e1d9;
+      text-align: center;
+      position: relative;
+      animation: zoomIn 1s ease-out 0.9s both;
+    }
+
+    .invitation-header {
+      font-size: 18px;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      color: #8b7866;
+      font-weight: 400;
+    }
+
+    .couple-names {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: #5e8aa7;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .wedding-date {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #6a668b;
+      font-weight: 400;
+    }
+
+    .play-button-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #7fb2ca 0%, #68b1b6 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px auto;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(139, 120, 102, 0.3);
+      animation: pulseElegant 2s ease-in-out infinite;
+    }
+
+    .play-button-circle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(139, 120, 102, 0.4);
+      animation: wiggle 0.5s ease;
+    }
+
+    .play-button-circle i {
+      font-size: 28px;
+      margin-left: 4px;
+    }
+
+    .separator {
+      height: 1px;
+      background: linear-gradient(to right, transparent 0%, #e9e1d9 50%, transparent 100%);
+      margin: 30px 0;
+    }
+
+    .countdown-title {
+      font-size: 22px;
+      margin-bottom: 25px;
+      text-align: center;
+      font-weight: 500;
+      color: #7a6a5c;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .time-unit {
+      text-align: center;
+      flex: 1;
+    }
+
+    .time-value {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 5px;
+      color: #8b7866;
+      background-color: #f0f5f8;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d4dce5;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .time-label {
+      font-size: 14px;
+      color: #8b7866;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 5px;
+    }
+
+    .date-display {
+      margin-top: 20px;
+      font-size: 15px;
+      text-align: center;
+      color: #7a6a5c;
+      padding-top: 20px;
+      border-top: 1px solid #e9e1d9;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .date-display strong {
+      color: #8b7866;
+      font-weight: 500;
+    }
+
+    /* Estilos para la sección de padres y padrinos (integración) */
+    .padres-padrinos {
+      background-color: #fffcf9;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 650px;
+      border: 1px solid #e9e1d9;
+      text-align: center;
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .padres-padrinos h1 {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      color: #136f8b;
+      border-bottom: 1px solid #378dd452;
+      padding-bottom: 10px;
+      /* CORREGIDO: Eliminé las propiedades que causaban invisibilidad */
+    }
+
+    .padres-padrinos p {
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .codigoVestimenta {
+      margin-bottom: 20px;
+      max-width: 220px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .codigoVestimenta:hover {
+      transform: scale(1.05);
+    }
+
+    .seccion {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .subtitulo {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #5c667a;
+      /* CORREGIDO: Eliminé las propiedades que causaban invisibilidad */
+    }
+
+    .nombres {
+      font-style: italic;
+      line-height: 1.6;
+      color: #5a4c40;
+    }
+
+    .separador {
+      margin: 30px 0;
+      border-top: 1px solid #d4af37;
+    }
+
+    .correccion {
+      color: #999;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    /* Animaciones para títulos de secciones cuando aparecen en scroll */
+    .padres-padrinos h1.scroll-animate,
+    .padres-padrinos .subtitulo.scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .padres-padrinos h1.visible,
+    .padres-padrinos .subtitulo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .invitation-container {
+        padding: 30px 20px;
+      }
+
+      .couple-names {
+        font-size: 32px;
+      }
+
+      .wedding-date {
+        font-size: 22px;
+      }
+
+      .countdown {
+        flex-wrap: wrap;
+      }
+
+      .time-unit {
+        flex: 0 0 48%;
+        margin-bottom: 15px;
+      }
+
+      .time-value {
+        font-size: 28px;
+      }
+
+      .play-button-circle {
+        width: 70px;
+        height: 70px;
+      }
+
+      .padres-padrinos {
+        padding: 30px 20px;
+      }
+
+      .padres-padrinos h1 {
+        font-size: 20px;
+      }
+    }
+
+    .button-llegar {
+      width: 150px;
+      height: 50px;
+      background: linear-gradient(135deg, #7fb2ca 0%, #68b1b6 100%);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 25px auto;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(102, 104, 139, 0.3);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-llegar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .button-llegar:hover::before {
+      left: 100%;
+    }
+
+    .button-llegar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(103, 102, 139, 0.4);
+    }
+
+    .button-llegar:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 10px rgba(103, 102, 139, 0.4);
+    }
+
+    .fondo-intineario {
+      background-image: url("img/fondo.png");
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 650px;
+      border: 1px solid #e9e1d9;
+      text-align: center;
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .intineario {
+      background: #fff;
+      max-width: 500px;
+      padding-bottom: 40px;
+    }
+
+    .intineario h1 {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding-top: 40px;
+      color: #136f8b;
+    }
+
+    .intineario img {
+      width: 80%;
+      margin-top: 10px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .intineario img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal para imagen ampliada */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: zoomIn 0.3s ease;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+    }
