@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador hasta 25/11/2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #faf6f2;
+            color: #5a4c40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .countdown-container {
+            background-color: #fffcf9;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid #e9e1d9;
+        }
+        
+        h1 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 500;
+            color: #7a6a5c;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .time-unit {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .time-value {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            color: #8b7866;
+            background-color: #f8f4f0;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e5ddd4;
+        }
+        
+        .time-label {
+            font-size: 14px;
+            color: #8b7866;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .date-display {
+            margin-top: 20px;
+            font-size: 15px;
+            text-align: center;
+            color: #7a6a5c;
+            padding-top: 20px;
+            border-top: 1px solid #e9e1d9;
+        }
+        
+        .date-display strong {
+            color: #8b7866;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 500px) {
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .time-unit {
+                flex: 0 0 48%;
+                margin-bottom: 15px;
+            }
+            
+            .time-value {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Contador para 25/11/2025</h1>
+        
+        <div class="countdown">
+            <div class="time-unit">
+                <div id="dias" class="time-value">--</div>
+                <div class="time-label">Días</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="horas" class="time-value">--</div>
+                <div class="time-label">Horas</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="minutos" class="time-value">--</div>
+                <div class="time-label">Minutos</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="segundos" class="time-value">--</div>
+                <div class="time-label">Segundos</div>
+            </div>
+        </div>
+        
+        <div class="date-display">
+            <div>Fecha objetivo: <strong>25 de Noviembre de 2025</strong></div>
+            <div id="fecha-hoy">Hoy: </div>
+        </div>
+    </div>
+
+    <script>
+        // Fecha objetivo: 25 de noviembre de 2025
+        const targetDate = new Date('November 25, 2025 00:00:00').getTime();
+        
+        function updateCountdown() {
+            // Obtener fecha y hora actual
+            const now = new Date().getTime();
+            
+            // Calcular la diferencia en milisegundos
+            const difference = targetDate - now;
+            
+            // Si ya llegó la fecha objetivo
+            if (difference <= 0) {
+                document.getElementById('dias').innerText = '0';
+                document.getElementById('horas').innerText = '0';
+                document.getElementById('minutos').innerText = '0';
+                document.getElementById('segundos').innerText = '0';
+                return;
+            }
+            
+            // Calcular días, horas, minutos y segundos
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            // Actualizar los valores en el HTML
+            document.getElementById('dias').innerText = days;
+            document.getElementById('horas').innerText = hours;
+            document.getElementById('minutos').innerText = minutes;
+            document.getElementById('segundos').innerText = seconds;
+            
+            // Actualizar la fecha de hoy
+            const today = new Date();
+            document.getElementById('fecha-hoy').innerText = 'Hoy: ' + today.toLocaleDateString('es-ES', {
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric'
+            });
+        }
+        
+        // Actualizar el contador cada segundo
+        setInterval(updateCountdown, 1000);
+        
+        // Ejecutar una vez al cargar la página
+        updateCountdown();
+    </script>
+</body>
+</html>

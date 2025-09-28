@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Boda - Lily & Luis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #faf6f2 0%, #e9e1d9 100%);
+            color: #5a4c40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .invitation-container {
+            background-color: #fffcf9;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px;
+            border: 1px solid #e9e1d9;
+            text-align: center;
+            position: relative;
+        }
+        
+        .invitation-header {
+            font-size: 18px;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #8b7866;
+            font-weight: 400;
+        }
+        
+        .couple-names {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #7a6a5c;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .wedding-date {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #8b7866;
+            font-weight: 400;
+        }
+        
+        .play-button-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8b7866 0%, #7a6a5c 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 120, 102, 0.3);
+        }
+        
+        .play-button-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(139, 120, 102, 0.4);
+        }
+        
+        .play-button-circle i {
+            font-size: 28px;
+            margin-left: 4px;
+        }
+        
+        .separator {
+            height: 1px;
+            background: linear-gradient(to right, transparent 0%, #e9e1d9 50%, transparent 100%);
+            margin: 30px 0;
+        }
+        
+        .countdown-title {
+            font-size: 22px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 500;
+            color: #7a6a5c;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .time-unit {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .time-value {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 5px;
+            color: #8b7866;
+            background-color: #f8f4f0;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e5ddd4;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .time-label {
+            font-size: 14px;
+            color: #8b7866;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 5px;
+        }
+        
+        .date-display {
+            margin-top: 20px;
+            font-size: 15px;
+            text-align: center;
+            color: #7a6a5c;
+            padding-top: 20px;
+            border-top: 1px solid #e9e1d9;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .date-display strong {
+            color: #8b7866;
+            font-weight: 500;
+        }
+        
+        .floral-decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .floral-top-left {
+            top: 15px;
+            left: 15px;
+            transform: rotate(-15deg);
+        }
+        
+        .floral-bottom-right {
+            bottom: 15px;
+            right: 15px;
+            transform: rotate(165deg);
+        }
+        
+        @media (max-width: 600px) {
+            .invitation-container {
+                padding: 30px 20px;
+            }
+            
+            .couple-names {
+                font-size: 32px;
+            }
+            
+            .wedding-date {
+                font-size: 22px;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .time-unit {
+                flex: 0 0 48%;
+                margin-bottom: 15px;
+            }
+            
+            .time-value {
+                font-size: 28px;
+            }
+            
+            .play-button-circle {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <!-- Decoración floral -->
+        <div class="floral-decoration floral-top-left">
+            <i class="fas fa-leaf" style="font-size: 60px;"></i>
+        </div>
+        <div class="floral-decoration floral-bottom-right">
+            <i class="fas fa-leaf" style="font-size: 60px;"></i>
+        </div>
+        
+        <div class="invitation-header">
+            Tenemos el honor de invitarte a nuestra boda
+        </div>
+        
+        <div class="couple-names">
+            Sandra & Agustin
+        </div>
+        
+        <div class="wedding-date">
+            Sábado 05 de Noviembre
+        </div>
+        
+        <button class="play-button-circle">
+            <i class="fas fa-play"></i>
+        </button>
+        
+        <div class="separator"></div>
+        
+        <h1 class="countdown-title">Faltan</h1>
+        
+        <div class="countdown">
+            <div class="time-unit">
+                <div id="dias" class="time-value">--</div>
+                <div class="time-label">Días</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="horas" class="time-value">--</div>
+                <div class="time-label">Horas</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="minutos" class="time-value">--</div>
+                <div class="time-label">Minutos</div>
+            </div>
+            
+            <div class="time-unit">
+                <div id="segundos" class="time-value">--</div>
+                <div class="time-label">Segundos</div>
+            </div>
+        </div>
+        
+        <div class="date-display">
+            <div>Para nuestro gran día: <strong>25 de Noviembre de 2025</strong></div>
+            <div id="fecha-hoy">Hoy: </div>
+        </div>
+    </div>
+
+    <script>
+        // Fecha objetivo: 25 de noviembre de 2025
+        const targetDate = new Date('November 25, 2025 00:00:00').getTime();
+        
+        function updateCountdown() {
+            // Obtener fecha y hora actual
+            const now = new Date().getTime();
+            
+            // Calcular la diferencia en milisegundos
+            const difference = targetDate - now;
+            
+            // Si ya llegó la fecha objetivo
+            if (difference <= 0) {
+                document.getElementById('dias').innerText = '0';
+                document.getElementById('horas').innerText = '0';
+                document.getElementById('minutos').innerText = '0';
+                document.getElementById('segundos').innerText = '0';
+                return;
+            }
+            
+            // Calcular días, horas, minutos y segundos
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            // Actualizar los valores en el HTML
+            document.getElementById('dias').innerText = days;
+            document.getElementById('horas').innerText = hours;
+            document.getElementById('minutos').innerText = minutes;
+            document.getElementById('segundos').innerText = seconds;
+            
+            // Actualizar la fecha de hoy
+            const today = new Date();
+            document.getElementById('fecha-hoy').innerText = 'Hoy: ' + today.toLocaleDateString('es-ES', {
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric'
+            });
+        }
+        
+        // Actualizar el contador cada segundo
+        setInterval(updateCountdown, 1000);
+        
+        // Ejecutar una vez al cargar la página
+        updateCountdown();
+        
+        // Agregar funcionalidad al botón
+        document.querySelector('.play-button-circle').addEventListener('click', function() {
+            alert('¡Gracias por confirmar tu asistencia! Te esperamos en nuestra boda.');
+        });
+    </script>
+</body>
+</html>
