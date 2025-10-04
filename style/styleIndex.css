@@ -253,6 +253,30 @@
       }
     }
 
+    .carrusel {
+      position: relative;
+      width: 560px;
+      height: 500px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carrusel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carrusel img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
     /* Caja de invitación elegante */
     .invitation-container {
       background-color: #fffcf9;
@@ -581,11 +605,12 @@
       width: 80%;
       margin-top: 10px;
       transition: transform 0.3s ease;
+      border-radius: 10px;
       cursor: pointer;
     }
 
     .intineario img:hover {
-      transform: scale(1.05);
+      transform: scale(1.009);
     }
 
     /* Modal para imagen ampliada */
