@@ -254,28 +254,33 @@
     }
 
     .carrusel {
-      position: relative;
-      width: 560px;
-      height: 500px;
-      margin: auto;
-      overflow: hidden;
-    }
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 500px;
+  margin: auto;
+  overflow: hidden;
+  aspect-ratio: 560 / 500; /* Mantiene proporción si la ventana cambia de tamaño */
+}
 
-    .carrusel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
+.carrusel img {
+  width: 100%;
+  height: 100%;
+  max-width: 560px;
+  max-height: 500px;
+  object-fit: cover; /* llena el espacio sin deformar */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-    .carrusel img.active {
-      opacity: 1;
-      z-index: 1;
-    }
+.carrusel img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
 
     /* Caja de invitación elegante */
     .invitation-container {
