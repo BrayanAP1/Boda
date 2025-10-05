@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Yeison Pulido',
                 'Diana Escalante',
                 'Ernesto Garcia',
-                'Monica Rugeles',
+                'Monica Ardilla',
                 'Stefania Rugeles',
                 'Darwin Olaya',
                 'Jhon Rugeles',
