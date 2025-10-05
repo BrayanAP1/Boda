@@ -1,231 +1,96 @@
-<!DOCTYPE html>
-<html lang="es">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const envelope = document.querySelector('.envelope');
+    const seal = document.querySelector('.seal');
+    const form = document.getElementById('nombre-form');
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contenido</title>
-  <link rel="icon" href="img/logo.png" type="image/png">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style/styleHome.css">
-</head>
-<body>
-  <!-- Logo -->
-  <div class="logo">
-    <img src="img/logo.png" alt="Logo">
-  </div>
+    // Lista de invitados permitidos
+    const nombresPermitidos = [
+        'Agustin Pulido', 'Sandra Rugeles', 'Brayan Pulido', 'Yeison Pulido', 'Diana Escalante',
+        'Ernesto Garcia', 'Monica Ardilla', 'Stefania Rugeles', 'Darwin Olaya', 'Jhon Rugeles',
+        'Maria Romero', 'Sebastian Villamizar', 'Gilma Rugeles', 'Crisanto Pulido', 'Luz Herrera',
+        'Jorge Pulido', 'Yadira Gonzales', 'Yesenia Gonzales', 'Julian Pulido', 'Fredy Pulido',
+        'Yoelis Yepes', 'Ferney Pulido', 'Diana Pulido', 'Esther Pulido', 'Jhon Jaimes',
+        'Monica Pulido', 'Jaiver Cruz', 'Yanet Mendoza', 'Deicy Lozano', 'Deicy Alvarado',
+        'Cristobal Garcia', 'Miguel Herrera', 'Stefanny Herrera', 'Stella Vega', 'Saul Salas',
+        'Maye', 'GilRoberto Vargas', 'Gil Vargas', 'Gil Roberto Vargas', 'Ladis Vargas'
+    ];
 
-  <!-- Frase -->
-  <div class="frase">
-    "Amar no es mirarse el uno al otro <br> es mirar juntos en la misma dirección."
-  </div>
-  <div class="autor">
-    — Antoine de Saint-Exupéry
-  </div>
+    seal.addEventListener('click', openEnvelope);
+    envelope.addEventListener('click', function (e) {
+        if (e.target === envelope) openEnvelope();
+    });
 
-  <!-- Carrusel de imágenes -->
-  <div class="carrusel">
-    <img src="img/pareja/pareja6.jpg" alt="Imagen 2" class="active">
-    <img src="img/pareja/pareja1.jpg" alt="Imagen 1">
-    <img src="img/pareja/pareja12.jpg" alt="Imagen 3">
-    <img src="img/pareja/pareja4.jpg" alt="Imagen 3">
-  </div>
+    function openEnvelope() {
+        if (!envelope.classList.contains('open')) {
+            envelope.classList.add('open');
+            document.querySelector('.instructions').textContent = 'Completa tus datos para confirmar';
+        }
+    }
 
-  <!-- Invitación elegante con contador -->
-  <div class="fondo-intineario">
-  <div class="invitation-container">
-    <div class="invitation-header">
-      Tenemos el honor de invitarte a nuestra boda
-    </div>
-    <div class="couple-names">
-      Sandra & Agustin
-    </div>
-    <div class="wedding-date">
-      Martes 25 de Noviembre
-    </div>
-    <div class="wedding-date">
-      Dale Play
-    </div>
-    <button class="play-button-circle" id="playBtn">
-      <i class="fas fa-pause"></i>
-    </button>
+    // Función para normalizar texto (quita tildes, espacios extra y pone en minúsculas)
+    function normalizar(texto) {
+        return texto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+            .replace(/\s+/g, " ") // Quita espacios dobles
+            .trim();
+    }
 
-    <!-- Reproductor oculto con tu música -->
-  <audio id="miMusica" src="musica/Cancion.mp3" autoplay></audio>
-    <div class="separator"></div>
-    <h1 class="countdown-title">Solo Faltan</h1>
-    <div class="countdown">
-      <div class="time-unit">
-        <div id="dias" class="time-value">--</div>
-        <div class="time-label">Días</div>
-      </div>
-      <div class="time-unit">
-        <div id="horas" class="time-value">--</div>
-        <div class="time-label">Horas</div>
-      </div>
-      <div class="time-unit">
-        <div id="minutos" class="time-value">--</div>
-        <div class="time-label">Minutos</div>
-      </div>
-      <div class="time-unit">
-        <div id="segundos" class="time-value">--</div>
-        <div class="time-label">Segundos</div>
-      </div>
-    </div>
-  </div>
-  </div>
+    // Función para calcular similitud (distancia de Levenshtein aproximada)
+    function similar(a, b) {
+        const longer = a.length > b.length ? a : b;
+        const shorter = a.length > b.length ? b : a;
+        const longerLength = longer.length;
+        if (longerLength === 0) return 1.0;
+        const same = longerLength - editarDistancia(longer, shorter);
+        return (same / longerLength);
+    }
 
-  <!-- Carrusel de imágenes -->
-  <div class="carrusel">
-    <img src="img/pareja/pareja5.jpg" alt="Imagen 1" class="active">
-    <img src="img/pareja/pareja2.jpg" alt="Imagen 2">
-    <img src="img/pareja/pareja7.jpg" alt="Imagen 3">
-    <img src="img/pareja/pareja8.jpg" alt="Imagen 3">
-  </div>
+    // Distancia de edición (Levenshtein)
+    function editarDistancia(a, b) {
+        const matrix = Array.from({ length: b.length + 1 }, () => []);
+        for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
 
-  <!-- Sección de padres y padrinos (integrada) -->
-  <div class="padres-padrinos">
-    <h1>Nuestros Padres</h1>
-    <div class="seccion">
-      <div class="subtitulo">DE LA NOVIA</div>
-      <div class="nombres">Gilma Rugeles Luque<br></div>
-    </div>
-    <div class="seccion">
-      <div class="subtitulo">DEL NOVIO</div>
-      <div class="nombres">Luz Maria Herrera Peña<br>y<br>Crisanto Pulido Arias.</div>
-    </div>
-    <div class="seccion">
-      <h1>Nuestros Padrinos</h1>
-    </div>
-    <div class="seccion anillos">
-      <div class="iconos1">
-        <img src="img/anillos.png" alt="anillos">
-      </div>
-      <div class="nombres">
-        Gilroberto Vargas Velasquez<br>
-        y<br>
-        Ladis Vargas Acosta.<br>
-      </div>
-    </div>
-    <div class="seccion anillos">
-      <div class="iconos">
-        <img src="img/lazo.png" alt="lazo">
-      </div>
-      <div class="nombres">
-        Gilroberto Vargas Velasquez<br>
-        y<br>
-        Ladis Vargas Acosta.<br>
-      </div>
-    </div>
-    <!-- <div class="seccion anillos">
-      <div class="iconos">
-        <img src="img/arras.png" alt="arras">
-      </div>
-      <div class="nombres">
-        (ingrese nombres)<br>
-        y<br>
-        (ingrese nombres).<br>
-      </div>
-    </div> -->
-    <!-- <div class="seccion anillos">
-      <div class="iconos">
-        <img src="img/velas.png" alt="velas">
-      </div>
-      <div class="nombres">
-        (ingrese nombres)<br>
-        y<br>
-        (ingrese nombres).<br>
-      </div>
-    </div> -->
-  </div>
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j - 1] + (a[j - 1] === b[i - 1] ? 0 : 1)
+                );
+            }
+        }
+        return matrix[b.length][a.length];
+    }
 
-  <div class="padres-padrinos">
-    <h1>Playa del frances </h1>
-    SEREMONIA RELIGOSA 4:00 PM <br><br><br>
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const nombreIngresado = document.getElementById('nombre').value;
 
-    <div class="contenedor-imagen">
-      <img src="img/iglesia.jpg" alt="Foto de la pareja">
-    </div> <br>
+        if (nombreIngresado.trim() === '') {
+            alert('Por favor, ingrese su nombre');
+            return;
+        }
 
-    Dirección: <br> Playa del frances <br> Tolú, Coveñas <br><br>
-    <button class="button-llegar" onclick="window.location.href='Ubicacion.html'" >Como llegar</button>
+        const nombreNormalizado = normalizar(nombreIngresado);
 
-    <div class="logo">
-      <img src="img/copas.png" alt="Copas">
-    </div>
-    <h1>playa a 5 cabañas del puente de manera</h1>
-    RECEPCIÓN 7:00 AM <br><br><br>
-    <div class="contenedor-imagen">
-      <img src="img/casa_playa.png" alt="Foto de la pareja">
-    </div> <br>
-    Dirección:<br> Playa del frances <br> Tolú, Coveñas <br>
-    <button class="button-llegar" onclick="window.location.href='Ubicacion.html'">Como llegar</button>
-  </div>
+        // Verificar coincidencia exacta o similar (>0.8)
+        const permitido = nombresPermitidos.some(n => {
+            const nombreLista = normalizar(n);
+            return (
+                nombreLista === nombreNormalizado || 
+                similar(nombreLista, nombreNormalizado) > 0.8
+            );
+        });
 
-  <div class="fondo-intineario">
-    <div class="intineario">
-      <h1>intineario boda</h1>
-      <img id="itinerario-img" src="img/intinerario.png" alt="Itinerario de la boda">
-    </div>
-  </div>
-
-  <!-- Carrusel de imágenes -->
-  <div class="carrusel">
-    <img src="img/pareja/pareja9.jpg" alt="Imagen 1" class="active">
-    <img src="img/pareja/pareja10.jpg" alt="Imagen 2">
-    <img src="img/pareja/pareja11.jpg" alt="Imagen 3">
-    <img src="img/pareja/pareja3.jpg" alt="Imagen 3">
-    <img src="img/pareja/pareja13.jpg" alt="Imagen 3">
-  </div>
-
-  <div class="padres-padrinos">
-    <h1>Codigo de vestimenta</h1>
-    <p>FORMAL ELEGANTE</p><br>
-    <img class="codigoVestimenta" src="img/codigo_de_vestimenta.png" alt="codigo_de_vestimenta"> <br>
-    POR FAVOR NO USAR BLANCO O SIMILARES <br>
-    (Colores reservados para la novia) <br> <br>
-    Hombres con trajes. <br>
-    Mujeres en azul Nuvado.
-  </div>
-
-  <div class="fondo-intineario">
-    <div class="intineario">
-      <h1>Sugerencia de regalos</h1> <br> <br>
-      Nuestro mejor regalo será celebrar<br>
-      contigo este dia tan especial, cualquier<br>
-      detalle de tu parte será bienvenido con<br>
-      mucho cariño. <br>
-      Les dejamos nuestras sugerencias:
-      <div class="sobres">
-        <img src="img/lluviaDeSorbes.png" alt="Lluvia de sobres">
-      </div>
-      <div class="regalos">
-        <img src="img/regalos.png" alt="Regalos">
-      </div>
-    </div>
-  </div>
-
-  <div class="padres-padrinos">
-    <h1>te esperamos</h1>
-    Tu Presencia es importante <br>
-    Para nosotros, por favor <br>
-    Confirma tu asistencia. <br>
-    <!-- <button class="button-llegar">confirmar</button> -->
-  </div>
-
-  <!-- Modal para imagen ampliada -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
-
-  <script src="script/scriptContador.js"></script>
-  <script src="script/scriptCarrusel.js"></script>
-  <script src="script/scriptMusica.js"></script>
-  
-</body>
-
-</html>
+        if (permitido) {
+            window.location.href = 'home.html';
+        } else {
+            alert('Lo sentimos, tu nombre no está en la lista de invitados.');
+        }
+    });
+});
+</script>
