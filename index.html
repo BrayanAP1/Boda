@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación de Boda Minimalista</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Parisienne&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Parisienne&family=Playfair+Display:ital@1&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,7 +15,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Playfair Display', serif;
             background: linear-gradient(to bottom, #f8f9fc 0%, #e9ecef 100%);
@@ -25,7 +28,7 @@
             color: #4a6572;
             overflow-x: hidden;
         }
-        
+
         h1 {
             font-family: 'Parisienne', cursive;
             font-size: 3.5rem;
@@ -34,7 +37,7 @@
             text-align: center;
             letter-spacing: 2px;
         }
-        
+
         /* Contenedor principal */
         .scene {
             position: relative;
@@ -44,7 +47,7 @@
             z-index: 10;
             perspective: 1000px;
         }
-        
+
         /* Sobre cerrado */
         .envelope {
             position: absolute;
@@ -55,7 +58,7 @@
             transform-style: preserve-3d;
             transition: transform 0.5s;
         }
-        
+
         /* Cuerpo del sobre */
         .envelope-body {
             position: absolute;
@@ -68,7 +71,7 @@
             overflow: hidden;
             border: 1px solid #d1e0ee;
         }
-        
+
         .envelope-body:before {
             content: '';
             position: absolute;
@@ -76,16 +79,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
+            background:
+                repeating-linear-gradient(45deg,
                     transparent,
                     transparent 8px,
                     rgba(126, 160, 184, 0.03) 8px,
-                    rgba(126, 160, 184, 0.03) 10px
-                );
+                    rgba(126, 160, 184, 0.03) 10px);
         }
-        
+
         /* Solapa del sobre */
         .flap {
             position: absolute;
@@ -101,12 +102,12 @@
             border-radius: 6px 6px 0 0;
             border-bottom: 1px solid #c9ddec;
         }
-        
+
         .envelope.open .flap {
             transform: rotateX(180deg);
             z-index: 1;
         }
-        
+
         /* Sello */
         .seal {
             position: absolute;
@@ -130,11 +131,11 @@
             transition: all 0.4s ease;
             line-height: 1.2;
         }
-        
+
         .seal:hover {
             transform: translateX(-50%) scale(1.05);
         }
-        
+
         /* Nota visible dentro del sobre */
         .note-inside {
             position: absolute;
@@ -154,7 +155,7 @@
             overflow: hidden;
             border: 1px solid #e1ecf6;
         }
-        
+
         .note-inside:before {
             content: '';
             position: absolute;
@@ -164,7 +165,7 @@
             height: 8px;
             background: linear-gradient(to right, #a8c6df 0%, #7ea0b8 100%);
         }
-        
+
         .note-inside p {
             font-size: 1.3rem;
             color: #7ea0b8;
@@ -173,7 +174,7 @@
             font-family: 'Dancing Script', cursive;
             font-weight: bold;
         }
-        
+
         /* Nota que se desliza hacia arriba */
         .note-slide {
             position: absolute;
@@ -186,11 +187,11 @@
             z-index: 30;
             overflow: hidden;
         }
-        
-        .envelope.open ~ .note-slide {
+
+        .envelope.open~.note-slide {
             height: 380px;
         }
-        
+
         .note {
             background: #ffffff;
             padding: 25px;
@@ -205,7 +206,7 @@
             align-items: center;
             position: relative;
         }
-        
+
         .note:before {
             content: '';
             position: absolute;
@@ -216,7 +217,7 @@
             background: linear-gradient(to right, #a8c6df 0%, #7ea0b8 100%);
             border-radius: 6px 6px 0 0;
         }
-        
+
         .note h2 {
             text-align: center;
             margin-bottom: 20px;
@@ -226,7 +227,7 @@
             font-weight: bold;
             margin-top: 5px;
         }
-        
+
         .note p {
             text-align: center;
             margin-bottom: 20px;
@@ -236,13 +237,13 @@
             font-weight: bold;
             color: #7ea0b8;
         }
-        
+
         /* Formulario */
         .form-group {
             margin-bottom: 20px;
             width: 100%;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -251,7 +252,7 @@
             font-size: 1.4rem;
             font-weight: bold;
         }
-        
+
         .form-group input {
             width: 100%;
             padding: 12px;
@@ -262,13 +263,13 @@
             background: #f8fafd;
             transition: all 0.3s ease;
         }
-        
+
         .form-group input:focus {
             outline: none;
             border-color: #a8c6df;
             box-shadow: 0 0 0 2px rgba(168, 198, 223, 0.2);
         }
-        
+
         button {
             background: linear-gradient(to right, #a8c6df 0%, #7ea0b8 100%);
             color: white;
@@ -282,12 +283,12 @@
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
         }
-        
+
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .instructions {
             text-align: center;
             margin-top: 30px;
@@ -298,19 +299,27 @@
             max-width: 500px;
             line-height: 1.5;
         }
-        
+
         .heart {
             display: inline-block;
             color: #a8c6df;
             animation: pulse 1.5s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .footer {
             margin-top: 40px;
             text-align: center;
@@ -321,7 +330,7 @@
             max-width: 600px;
             line-height: 1.5;
         }
-        
+
         .couple-names {
             font-family: 'Parisienne', cursive;
             font-size: 1.8rem;
@@ -330,7 +339,7 @@
             margin: 15px 0;
             font-weight: bold;
         }
-        
+
         .minimal-decoration {
             position: absolute;
             width: 80px;
@@ -339,106 +348,112 @@
             z-index: 0;
             color: #7ea0b8;
         }
-        
+
         .decoration-1 {
             top: 20px;
             left: 20px;
         }
-        
+
         .decoration-2 {
             bottom: 20px;
             right: 20px;
         }
     </style>
 </head>
+
 <body>
     <!-- Decoraciones minimalistas -->
     <i class="fas fa-heart minimal-decoration decoration-1"></i>
     <i class="fas fa-heart minimal-decoration decoration-2"></i>
-    
+
     <h1>Invitación de Boda</h1>
-    
+
     <div class="scene">
         <!-- Sobre -->
         <div class="envelope">
             <!-- Cuerpo del sobre -->
             <div class="envelope-body"></div>
-            
+
             <!-- Solapa del sobre -->
             <div class="flap"></div>
-            
+
             <!-- Sello central -->
             <div class="seal">Abrir<br>invitación</div>
-            
+
             <!-- Nota visible dentro del sobre -->
             <div class="note-inside">
                 <p>¡Abrir para confirmar asistencia!</p>
             </div>
         </div>
-        
+
         <!-- Nota que se deslizará hacia arriba -->
         <div class="note-slide">
             <div class="note">
-                <p>Por favor ingresa<br> tu número de cédula</p>
+                <div class="couple-names">Agustin & Sandra</div>
                 
-                <div class="couple-names">Sandra & Agustin</div>
-                
-                <form id="cedula-form">
+                <p>Por favor ingresa<br> tu nombre</p>
+
+                <form id="nombre-form">
                     <div class="form-group">
-                        <label for="cedula">Número de cédula:</label>
-                        <input type="text" id="cedula" name="cedula" required placeholder="Ingresa tu numero de cédula">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ingresa Nombre y Apellido">
                     </div>
                     <button type="submit">Ingresar</button>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <p class="instructions">Haz clic en el sello <span class="heart">❤</span> para abrir la invitación</p>
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const envelope = document.querySelector('.envelope');
-            const seal = document.querySelector('.seal');
-            const form = document.getElementById('cedula-form');
-            
-            // Abrir el sobre al hacer clic en el sello o el sobre
-            seal.addEventListener('click', openEnvelope);
-            envelope.addEventListener('click', function(e) {
-                // Solo abrir si se hace clic en el sobre (no en elementos internos)
-                if (e.target === envelope) {
-                    openEnvelope();
-                }
-            });
-            
-            function openEnvelope() {
-                if (!envelope.classList.contains('open')) {
-                    envelope.classList.add('open');
-                    document.querySelector('.instructions').textContent = 'Completa tus datos para confirmar';
-                }
-            }
-            
-            // Manejar el envío del formulario
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const cedula = document.getElementById('cedula').value;
-                
-                if (cedula.trim() === '') {
-                    alert('Por favor, ingrese su número de cédula');
-                    return;
-                }
-                
-                // Validar que sea un número
-                if (!/^\d+$/.test(cedula)) {
-                    alert('La cédula debe contener solo números');
-                    return;
-                }
-                
-                window.location.href = "home.html";
-                // Aquí puedes enviar los datos a un servidor si es necesario
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    const envelope = document.querySelector('.envelope');
+    const seal = document.querySelector('.seal');
+    const form = document.getElementById('nombre-form');
+    
+    seal.addEventListener('click', openEnvelope);
+    envelope.addEventListener('click', function(e) {
+        if (e.target === envelope) {
+            openEnvelope();
+        }
+    });
+
+    function openEnvelope() {
+        if (!envelope.classList.contains('open')) {
+            envelope.classList.add('open');
+            document.querySelector('.instructions').textContent = 'Completa tus datos para confirmar';
+        }
+    }
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+
+        if (nombre === '') {
+            alert('Por favor, ingrese su nombre');
+            return;
+        }
+
+        // Enviar el nombre al servidor para verificar en el CSV
+        const response = await fetch('verificarNombre.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'nombre=' + encodeURIComponent(nombre)
         });
-    </script>
+
+        const result = await response.text();
+
+        if (result === 'OK') {
+            window.location.href = "home.html";
+        } else {
+            alert('Lo sentimos, tu nombre no está en la lista de invitados.');
+        }
+    });
+});
+</script>
+
 </body>
+
 </html>

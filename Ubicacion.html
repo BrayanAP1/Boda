@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Playa del Francés</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #faf6f2 0%, #e9e1d9 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .contenedor {
+      background-color: white;
+      max-width: 560px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #0277bd;
+      margin-bottom: 15px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 350px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Como llegar</h1>
+    <p>El día 24 Salimos de...</p>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.3384307183683!2d-75.57631142514731!3d9.566066690518312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e5902f62e85021d%3A0x86b63e81c19eb865!2sPlaya%20del%20Frances!5e0!3m2!1ses-419!2sco!4v1759692693819!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+    <button onclick="window.location.href='home.html'">Volver al Home</button>
+  </div>
+</body>
+</html>
