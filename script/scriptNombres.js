@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Sandra Rugeles',
                 'Brayan Pulido',
                 'Yeison Pulido',
-                'Brayan'
+                'Diana Escalante',
+                'Ernesto Garcia'
             ];
 
             seal.addEventListener('click', openEnvelope);
