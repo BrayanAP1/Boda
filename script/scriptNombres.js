@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Lista de invitados permitidos
             const nombresPermitidos = [
-                'Agustin',
-                'Sandra',
-                'Leidy',
-                'Camilo Pulido',
+                'Agustin Pulido',
+                'Sandra Rugeles',
+                'Brayan Pulido',
+                'Yeison Pulido',
                 'Brayan'
             ];
 
