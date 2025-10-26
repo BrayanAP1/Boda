@@ -618,6 +618,15 @@
       transform: scale(1.009);
     }
 
+    /* Video itinerario */
+    video {
+      width: 90%;
+      height: 800px;
+      margin-top: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
     /* Modal para imagen ampliada */
     .modal {
       display: none;
@@ -663,4 +672,21 @@
     .close:focus {
       color: #bbb;
       text-decoration: none;
+    }
+
+     #fin {
+      position: fixed;
+      bottom: -100px; /* comienza oculto fuera de la pantalla */
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(90deg, #fafafa, #fafafa);
+      color: rgb(0, 0, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      transition: bottom 0.6s ease-in-out;
+      z-index: 10;
     }
